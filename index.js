@@ -1,4 +1,4 @@
-var height = 6;
+var height = 8;
 var width = 5;
 
 // var kbHeight = ;
@@ -33,8 +33,8 @@ guesses = [];
 var word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
 console.log(word);
 
-let correctE = "🟩";
-let presentE = "🟨";
+let correctE = "🟦";
+let presentE = "🟪";
 let absentE = "⬜";
 
 let shareArr = [];
@@ -232,8 +232,8 @@ function update() {
             correct++;
             currTile.classList.add("correct");
 
-            // currKb.classList.remove("present");
-            // currKb.classList.add("correct");
+            currKb.classList.remove("present-kb");
+            currKb.classList.add("absent-kb");
 
             correctWordArr[i] = "";
             presentWordArr[i] = "";
@@ -258,7 +258,7 @@ function update() {
                 present++;
 
                 if (!currKb.classList.contains("correct")) {
-                    // currKb.classList.add("present");
+                    currKb.classList.add("absent-kb");
                 }
 
                 presentWordArr[presentWordArr.indexOf(currTile.innerText)] = "";
@@ -293,7 +293,7 @@ function update() {
             // if (!currKb.classList.contains("correct") && !currKb.classList.contains("present")) {
 
             // }
-            // currKb.classList.add("absent");
+            currKb.classList.add("absent-kb");
 
         }
     }
@@ -321,10 +321,10 @@ function update() {
 
         if (currTile.classList.contains("correct")) {
             shareAdd.push(correctE);
-            outputStr += String.fromCodePoint("0x1F7E9");
+            outputStr += String.fromCodePoint("0x1F7E6");
         } else if (currTile.classList.contains("present")) {
             shareAdd.push(presentE);
-            outputStr += String.fromCodePoint("0x1F7E8");
+            outputStr += String.fromCodePoint("0x1F7EA");
         } else {
             shareAdd.push(absentE);
             outputStr += String.fromCodePoint("0x2B1C");
@@ -347,7 +347,7 @@ function update() {
 
 function copyResult() {
 
-    let beginning = "Wordzal " + row + "/" + 6 + "\n" + "\n";
+    let beginning = "WORDZAL_V2 " + row + "/" + 8 + "\n" + "\n";
 
     navigator.clipboard.writeText(beginning + outputStr);
 

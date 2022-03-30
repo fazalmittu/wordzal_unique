@@ -15,8 +15,8 @@ hr {
 }
 
 #board {
-    width: 345px;
-    height: 420px;
+    width: 345px; 
+    height: 560px; /* was 420 */
     margin: 0 auto;
     margin-top: 3px;
     margin-bottom: 15px;
@@ -135,7 +135,7 @@ hr {
     /* border: 3px solid green; */
     padding: 10px;
 
-    background-color: #6AAA64;
+    background-color: #1389ce;
     border: none;
     color: white;
     /* padding: 16px 32px; */
@@ -152,7 +152,7 @@ hr {
 }
 
 .bro {
-    background-color: #6AAA64;
+    background-color: #1389ce; /*#6AAA64*/
     border: none;
     color: white;
     font-size: 16px;
@@ -163,18 +163,42 @@ hr {
 .btn:hover {opacity: 1.5}
 
 .correct {
-    background-color: #6AAA64;
+    border: 1px transparent;
+    margin: 5px;
+    background-color: #1389ce;
     color: white;
     border-color: white;
 }
 
 .present {
-    background-color: #C9B458;
+    border: 1px transparent;
+    margin: 5px;
+    background-color: #b143c7; /* #C9B458 */
     color: white;
     border-color: white;
 }
 
 .absent {
+    border: 1px transparent;
+    margin: 5px;
+    background-color: #787C7E;
+    color: white;
+    border-color:white;
+}
+
+.correct-kb {
+    background-color: #1389ce;
+    color: white;
+    border-color: white;
+}
+
+.present-kb {
+    background-color: #b143c7; /* #C9B458 */
+    color: white;
+    border-color: white;
+}
+
+.absent-kb {
     background-color: #787C7E;
     color: white;
     border-color:white;
