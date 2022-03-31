@@ -45,7 +45,7 @@ hr {
 
     /* Text */
     color: black;
-    font-size: 36px;
+    font-size: 20px;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -163,24 +163,24 @@ hr {
 .btn:hover {opacity: 1.5}
 
 .correct {
-    border: 1px transparent;
-    margin: 5px;
+    /* border: 1px transparent; */
+    /* margin: 5px; */
     background-color: #1389ce;
     color: white;
     border-color: white;
 }
 
 .present {
-    border: 1px transparent;
-    margin: 5px;
+    /* border: 1px transparent; */
+    /* margin: 5px; */
     background-color: #b143c7; /* #C9B458 */
     color: white;
     border-color: white;
 }
 
 .absent {
-    border: 1px transparent;
-    margin: 5px;
+    /* border: 1px transparent; */
+    /* margin: 5px; */
     background-color: #787C7E;
     color: white;
     border-color:white;

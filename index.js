@@ -340,7 +340,7 @@ function update() {
 
     // copyResult();
 
-    printRowResult(correct, present, absent);
+    printRowResult(guessWord, correct, present, absent);
 
     row += 1;
     col = 0;
@@ -358,27 +358,26 @@ function copyResult() {
 // NEW FUNCTIONS --------------------------------------------
 
 
+function printRowResult(word, c, p, a) {
 
+    // let tile = document.getElementById(row.toString() + "-0");
+    // tile.remove()
 
-function printRowResult(c, p, a) {
+    // var currVal = "";
+    // if (tile) {
+    //     currVal = tile.value;
+    // }
 
-    let tile = document.getElementById(row.toString() + "-0");
+    // // tile.id = row.toString() + "-" + col.toString();
+    // tile.classList.remove("correct");
+    // tile.classList.remove("present");
+    // tile.classList.remove("absent");
+    // tile.classList.remove("tile");
 
-    var currVal = "";
-    if (tile) {
-        currVal = tile.value;
-    }
+    // tile.classList.add("space-tile");
+    // tile.innerText = "";
 
-    // tile.id = row.toString() + "-" + col.toString();
-    tile.classList.remove("correct");
-    tile.classList.remove("present");
-    tile.classList.remove("absent");
-    tile.classList.remove("tile");
-
-    tile.classList.add("space-tile");
-    tile.innerText = "";
-
-    for (let i = 1; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
         let tile = document.getElementById(row.toString() + "-" + i.toString());
         
         var currVal = "";
@@ -387,7 +386,7 @@ function printRowResult(c, p, a) {
         }
 
         switch (i) {
-            case 1:
+            case 0:
                 tile.classList.remove("correct");
                 tile.classList.remove("present");
                 tile.classList.remove("absent");
@@ -396,7 +395,7 @@ function printRowResult(c, p, a) {
                 tile.innerText = c.toString();
                 break;
             
-            case 2:
+            case 1:
                 tile.classList.remove("correct");
                 tile.classList.remove("present");
                 tile.classList.remove("absent");
@@ -405,7 +404,7 @@ function printRowResult(c, p, a) {
                 tile.innerText = p.toString();
                 break;
 
-            case 3:
+            case 2:
                 tile.classList.remove("correct");
                 tile.classList.remove("present");
                 tile.classList.remove("absent");
@@ -417,37 +416,62 @@ function printRowResult(c, p, a) {
 
     }
 
+    let tile = document.getElementById(row.toString() + "-3");
+    // tile.remove();
+    tile.removeAttribute('class');
+    tile.classList.add("space-tile");
+    tile.innerText = "——";
+
+    
+
+    // var currVal = "";
+    // if (tile) {
+    //     currVal = tile.value;
+    // }
+
+    // // tile.id = row.toString() + "-" + col.toString();
+    // tile.classList.remove("correct");
+    // tile.classList.remove("present");
+    // tile.classList.remove("absent");
+    // tile.classList.remove("tile");
+
+    // tile.classList.add("space-tile");
+    // tile.in
+
     let endTile = document.getElementById(row.toString() + "-4");
-
-    var currVal = "";
-    if (endTile) {
-        currVal = endTile.value;
-    }
-
-    // tile.id = row.toString() + "-" + col.toString();
-    endTile.classList.remove("tile");
-    endTile.classList.remove("correct");
-    endTile.classList.remove("present");
-    endTile.classList.remove("absent");
-
+    endTile.removeAttribute('class');
     endTile.classList.add("space-tile");
-    endTile.innerText = "";
+    endTile.innerText = word.toUpperCase();
 
-    let words = document.getElementById("words");
+    // var currVal = "";
+    // if (endTile) {
+    //     currVal = endTile.value;
+    // }
 
-    var currVal = "";
-    if (words) {
-        currVal = words.value;
-        // console.log(currVal);
-    }
+    // // tile.id = row.toString() + "-" + col.toString();
+    // endTile.classList.remove("tile");
+    // endTile.classList.remove("correct");
+    // endTile.classList.remove("present");
+    // endTile.classList.remove("absent");
 
-    words.innerText = "";
+    // endTile.classList.add("space-tile");
+    // endTile.innerText = "";
 
-    let word_str = "";
-    for (let i = 0; i < guesses.length; i++) {
-        word_str += guesses[i].toUpperCase() + "\n";
-    }
+    // let words = document.getElementById("words");
 
-    words.innerText = word_str;
+    // var currVal = "";
+    // if (words) {
+    //     currVal = words.value;
+    //     // console.log(currVal);
+    // }
+
+    // words.innerText = "";
+
+    // let word_str = "";
+    // for (let i = 0; i < guesses.length; i++) {
+    //     word_str += guesses[i].toUpperCase() + "\n";
+    // }
+
+    // words.innerText = word_str;
     
 }
