@@ -40,60 +40,109 @@ let absentE = "⬜";
 let shareArr = [];
 let outputStr = "";
 
+let toggle = false;
+
 window.onload = function() {
     initialize();
 }
 
 function processInput(e) {
-    if (gameOver) return;
+    
+    if (!toggle) {
 
-    if ("KeyA" <= e.code && e.code <= "KeyZ") {
-        if (col < width) {
+        if (gameOver) return;
+
+        if ("KeyA" <= e.code && e.code <= "KeyZ") {
+            if (col < width) {
+                var currTile = document.getElementById(row.toString() + "-" + col.toString());
+                var currVal = "";
+                if (currTile) {
+                    currVal = currTile.value;
+                }
+
+                // let currTile = document.getElementById(row.toString() + '-' + col.toString());
+                if (currTile.innerText == "") {
+                    currTile.innerText = e.code[3];
+                    col++;
+                }
+            }
+        } else if (e.code == "Backspace") {
+            if (0 < col && col <= width) {
+                col -=1;
+            }
+
             var currTile = document.getElementById(row.toString() + "-" + col.toString());
             var currVal = "";
+
             if (currTile) {
                 currVal = currTile.value;
             }
 
-            // let currTile = document.getElementById(row.toString() + '-' + col.toString());
-            if (currTile.innerText == "") {
-                currTile.innerText = e.code[3];
-                col++;
+            currTile.innerText = "";
+
+            var ans = document.getElementById("answer");
+            var ansVal = "";
+        
+            if (ans) {
+                ansVal = ans.value;
+            }
+        
+            ans.innerText = "";
+
+        } else if (e.code == "Enter") {
+            if (col == 5) {
+                update();
             }
         }
-    } else if (e.code == "Backspace") {
-        if (0 < col && col <= width) {
-            col -=1;
+
+        if (!gameOver && row == height) {
+            gameOver = true;
+            document.getElementById("answer").innerText = word;
         }
 
-        var currTile = document.getElementById(row.toString() + "-" + col.toString());
-        var currVal = "";
+    } else {
+        // console.log(e)
 
-        if (currTile) {
-            currVal = currTile.value;
+        if (e.code != "Enter") {
+            let keyTile = document.getElementById("Key" + e.code[3]); 
+            console.log(keyTile.className)
+
+            switch (keyTile.className) {
+                case "key-tile":
+                    keyTile.classList.remove("key-tile")
+                    keyTile.classList.add("correct-kb");
+                    break;
+                
+                case "correct-kb":
+                    keyTile.classList.remove("correct-kb");
+                    keyTile.classList.add("present-kb");
+                    break;
+
+                case "present-kb":
+                    keyTile.classList.remove("present-kb");
+                    keyTile.classList.add("absent-kb");
+                    break;
+                
+                case "absent-kb":
+                    keyTile.classList.remove("absent-kb");
+                    keyTile.classList.add("key-tile");
+                    break;
+
+            }
+
+            if (keyTile.className == "absent-tile") {
+                console.log("hi")
+                keyTile.classList.remove("absent-kb");
+                keyTile.classList.add("key-tile");
+            }
+
         }
 
-        currTile.innerText = "";
+        // console.log("SUCCESS COMPLETE KEY WORK")
 
-        var ans = document.getElementById("answer");
-        var ansVal = "";
-    
-        if (ans) {
-            ansVal = ans.value;
-        }
-    
-        ans.innerText = "";
-
-    } else if (e.code == "Enter") {
-        if (col == 5) {
-            update();
-        }
     }
 
-    if (!gameOver && row == height) {
-        gameOver = true;
-        document.getElementById("answer").innerText = word;
-    }
+
 }
 
 function processKey() {
@@ -108,6 +157,14 @@ function initialize() {
 
     let btn = document.getElementById("btn");
     btn.style.display = "none";
+
+    let toggle = document.getElementById("toggle");
+    // toggle.innerText = "Toggle Keyboard"
+
+    btn.innerHTML = `<button class="bro" onclick="copyResult()" >Share</button>`;
+
+    toggle.innerHTML = `<button class="bro" onclick="setToggle()" >Toggle Keyboard</button>`;
+    // toggle.style.display = "none";
 
     for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
@@ -129,9 +186,11 @@ function initialize() {
         let row = keyboard[i];
         let keyboardRow = document.createElement("div");
         keyboardRow.classList.add("keyboard-row");
+        keyboardRow.id = "kbRow" + i.toString();
 
         for (let j = 0; j < row.length; j++) {
             let keyTile = document.createElement("div");
+            // keyTile.id = "kb" + i.toString() + "-" + j.toString()
 
             let key = row[j];
             keyTile.innerText = key;
@@ -233,7 +292,7 @@ function update() {
             currTile.classList.add("correct");
 
             currKb.classList.remove("present-kb");
-            currKb.classList.add("absent-kb");
+            // currKb.classList.add("absent-kb");
 
             correctWordArr[i] = "";
             presentWordArr[i] = "";
@@ -258,7 +317,7 @@ function update() {
                 present++;
 
                 if (!currKb.classList.contains("correct")) {
-                    currKb.classList.add("absent-kb");
+                    // currKb.classList.add("absent-kb");
                 }
 
                 presentWordArr[presentWordArr.indexOf(currTile.innerText)] = "";
@@ -293,7 +352,7 @@ function update() {
             // if (!currKb.classList.contains("correct") && !currKb.classList.contains("present")) {
 
             // }
-            currKb.classList.add("absent-kb");
+            // currKb.classList.add("absent-kb");
 
         }
     }
@@ -305,9 +364,8 @@ function update() {
         // btn.classList.add("btn");
         
         // btn.innerHTML = `<button class="btn" id="btn" onclick="copyResult()">Share</button>`;
-        btn.innerHTML = `   
-                            <button class="bro" onclick="copyResult()" >Share</button>
-                        `;
+        btn.innerHTML = `<button class="bro" onclick="copyResult()" >Share</button>
+`;
         btn.style.display = "block";
 
         // btn.addEventListener("click", copyResult);
@@ -420,8 +478,7 @@ function printRowResult(word, c, p, a) {
     tile.removeAttribute('class');
     tile.classList.add("space-tile");
     tile.innerText = "——";
-
-    
+ 
 
     // var currVal = "";
     // if (tile) {
@@ -473,4 +530,156 @@ function printRowResult(word, c, p, a) {
 
     // words.innerText = word_str;
     
+}
+
+function toggleKB() {
+
+    let keyboard = [
+        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+        ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+        ["Enter", "Z", "X", "C", "V", "B", "N", "M", "<"]
+    ];
+
+    // keyboardRow.id = "kbRow" + i.toString();
+
+    //     for (let j = 0; j < row.length; j++) {
+    //         let keyTile = document.createElement("div");
+    //         keyTile.id = "kb" + i.toString() + "-" + j.toString()
+    //         // ex id: kb0-0 and i'm ok w that !
+
+    // console.log(keyboard.length)
+
+    for (let i = 0; i < keyboard.length; i++) {
+        let row = keyboard[i];
+        console.log("BRO I AM " + i);
+        // let keyboardRow = document.getElementById("kbRow" + i.toString());
+        // keyboardRow.classList.add("keyboard-row");
+        
+        for (let j = 0; j < row.length; j++) {
+            console.log("HI");
+
+            let key = row[j];
+            // console.log(key);            
+
+            if (key == "Enter") {
+                continue;
+            } else if (key == "<") {
+                continue;
+            } 
+            
+            let keyTile = document.getElementById("Key" + key);
+            console.log(keyTile.id)
+            
+            // let key = row[j];
+
+            //need to make it so that the innerHTML changes
+            //want to make it so that onClick changes to another function
+            //other function should change css class of tile based
+            //on current state ofc
+
+            // keyTile.innerText = key;
+            // if (key == "Enter") {
+            //     keyTile.id = "Enter";
+            // } else if (key == "<") {
+            //     keyTile.id = "Backspace";
+            // } else if (key >= "A" && key <= "Z") {
+            //     keyTile.id = "Key" + key;
+            // }
+
+            // keyTile.removeEventListener("click", processKey())
+            // keyTile.addEventListener("click", changeColor(key))
+
+            keyTile.innerHTML = `<button class="key-tile" onclick="changeColor()" ></button>`;
+            keyTile.innerText = key;
+
+            console.log("hey")
+            
+
+            // if (key == "Enter") {
+            //     keyTile.classList.add("enter-key-tile");
+            // } else {
+            //     keyTile.classList.add("key-tile");
+            // }
+
+            // keyboardRow.appendChild(keyTile);
+        }
+
+        console.log("LOOP DONE")
+
+        // document.body.appendChild(keyboardRow);
+
+    }
+
+    // document.addEventListener("keyup", e => {
+    //     processInput(e);
+    // })
+
+    // for (let i = 0; i < height; i++) {
+    //     for (let j = 0; j < width; j++) {
+    //        let tile = document.createElement("span");
+    //        tile.id = i.toString() + "-" + j.toString();
+    //        tile.classList.add("tile");
+    //        tile.innerText = "";
+    //        document.getElementById("board").appendChild(tile);
+    //     }
+    // }
+
+    // let keyboard = [
+    //     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+    //     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+    //     ["Enter", "Z", "X", "C", "V", "B", "N", "M", "<"]
+    // ];    
+
+    // for (let i = 0; i < keyboard.length; i++) {
+    //     let row = keyboard[i];
+    //     let keyboardRow = document.createElement("div");
+    //     keyboardRow.classList.add("keyboard-row");
+    //     keyboardRow.id = "kbRow" + i.toString();
+
+    //     for (let j = 0; j < row.length; j++) {
+    //         let keyTile = document.createElement("div");
+    //         // keyTile.id = "kb" + i.toString() + "-" + j.toString()
+
+    //         let key = row[j];
+    //         keyTile.innerText = key;
+    //         if (key == "Enter") {
+    //             keyTile.id = "Enter";
+    //         } else if (key == "<") {
+    //             keyTile.id = "Backspace";
+    //         } else if (key >= "A" && key <= "Z") {
+    //             keyTile.id = "Key" + key;
+    //         }
+
+    //         keyTile.addEventListener("click", processKey)
+
+    //         if (key == "Enter") {
+    //             keyTile.classList.add("enter-key-tile");
+    //         } else {
+    //             keyTile.classList.add("key-tile");
+    //         }
+
+    //         keyboardRow.appendChild(keyTile);
+    //     }
+
+    //     document.body.appendChild(keyboardRow);
+
+    // }
+
+
+
+}
+
+function changeColor(key) {
+    let keyTile = document.getElementById("Key" + key);
+    console.log("IM EHRE")
+
+    keyTile.classList.remove("key-tile");
+    keyTile.classList.add("correct-kb");
+
+    // if ()
+
+}
+
+function setToggle() {
+    toggle = !toggle;
 }

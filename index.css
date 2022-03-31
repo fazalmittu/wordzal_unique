@@ -91,6 +91,7 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .key-tile:active {
@@ -149,6 +150,7 @@ hr {
     cursor: pointer;
     align-items: center;
     justify-content: center;
+    cursor: default;
 }
 
 .bro {
@@ -187,19 +189,70 @@ hr {
 }
 
 .correct-kb {
+
+    /* Box */
+    border: 1px solid lightgray;
+    width: 30px;
+    height: 36px;
+    margin: 1px;
+
+    /* Text */
+    /* color: black; */
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: #1389ce;
     color: white;
     border-color: white;
+
+    cursor: default;
 }
 
 .present-kb {
+
+    /* Box */
+    border: 1px solid lightgray;
+    width: 30px;
+    height: 36px;
+    margin: 1px;
+
+    /* Text */
+    /* color: black; */
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: #b143c7; /* #C9B458 */
     color: white;
     border-color: white;
+
+    cursor: default;
 }
 
 .absent-kb {
+
+    /* Box */
+    border: 1px solid lightgray;
+    width: 30px;
+    height: 36px;
+    margin: 1px;
+
+    /* Text */
+    /* color: black; */
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: #787C7E;
     color: white;
     border-color:white;
+
+    cursor: default;
 }
