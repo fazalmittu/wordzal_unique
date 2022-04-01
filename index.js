@@ -462,12 +462,12 @@ function printRowResult(word, c, p, a) {
 
 function setToggle() {
 
-    let toggle = document.getElementById("toggle");
+    let togglebtn = document.getElementById("toggle");
     
-    if (toggle.innerText == "Toggle Keyboard") {
-        toggle.innerHTML = `<button class="bro" tabindex="-1" onclick="setToggle()" >Toggle Keyboard •</button>`;
+    if (togglebtn.innerText == "Toggle Keyboard") {
+        togglebtn.innerHTML = `<button class="bro" tabindex="-1" onclick="setToggle()" >Toggle Keyboard •</button>`;
     } else {
-        toggle.innerHTML = `<button class="bro" tabindex="-1" onclick="setToggle()" >Toggle Keyboard</button>`;
+        togglebtn.innerHTML = `<button class="bro" tabindex="-1" onclick="setToggle()" >Toggle Keyboard</button>`;
     }
 
     // let btn_able = document.getElementById("toggle");
@@ -482,6 +482,7 @@ function setToggle() {
     }
 
     toggle = !toggle;
+
     let sel = document.getSelection();
     console.log(sel)
     sel.removeAllRanges();
