@@ -462,6 +462,14 @@ function printRowResult(word, c, p, a) {
 
 function setToggle() {
 
+    let toggle = document.getElementById("toggle");
+    
+    if (toggle.innerText == "Toggle Keyboard") {
+        toggle.innerHTML = `<button class="bro" tabindex="-1" onclick="setToggle()" >Toggle Keyboard •</button>`;
+    } else {
+        toggle.innerHTML = `<button class="bro" tabindex="-1" onclick="setToggle()" >Toggle Keyboard</button>`;
+    }
+
     // let btn_able = document.getElementById("toggle");
     let childNodes = document.getElementById("toggle").getElementsByTagName('*');
     
