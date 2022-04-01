@@ -151,6 +151,7 @@ hr {
     align-items: center;
     justify-content: center;
     cursor: default;
+    
 }
 
 .bro {
@@ -160,6 +161,16 @@ hr {
     font-size: 16px;
     cursor: pointer;
 
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.bro {
+    outline: none;
+    box-shadow: none;
 }
 
 .btn:hover {opacity: 1.5}
