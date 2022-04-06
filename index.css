@@ -32,6 +32,14 @@ hr {
 
 }
 
+#winner {
+    font-size: 36px;
+    font-weight: bold;
+    /* margin: 25px; */
+    /* margin-bottom: 20px; */
+
+}
+
 .words {
     font-size: 36px;
     font-weight: bold;
@@ -168,7 +176,7 @@ hr {
     box-shadow: none;
 }
 
-.bro {
+.bro:focus {
     outline: none;
     box-shadow: none;
 }
@@ -267,3 +275,4 @@ hr {
 
     cursor: default;
 }
+
