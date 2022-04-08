@@ -427,7 +427,7 @@ function update() {
 
 function copyResult() {
 
-    let beginning = "WORDZAL_V2 " + row + "/" + 8 + "\n" + "\n";
+    let beginning = "WORDZAL UNLIMITED " + row + "/" + 8 + "\n" + "\n";
 
     navigator.clipboard.writeText(beginning + outputStr);
 
